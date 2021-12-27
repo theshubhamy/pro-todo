@@ -51,10 +51,11 @@ function App() {
       return prev;
     });
   };
-
+  let issue = [];
+  localStorage.setItem("issue", issue);
   const addItem = () => {
     if (text === "") {
-      alert("please enter any value to add");
+      alert("please enter any issue.");
     } else {
       setState((prev) => {
         return {
@@ -71,9 +72,9 @@ function App() {
           },
         };
       });
+
       setText("");
     }
-    localStorage.addItem(setText(""));
   };
   const clearItem = () => {
     localStorage.clear();
