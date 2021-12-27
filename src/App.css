@@ -58,12 +58,29 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 2px 0 !important;
 }
 .App .column {
   width: 30%;
 }
 
 @media (max-width: 768px) {
+  .additem {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 5%;
+  }
+  .input-item {
+    display: flex;
+    width: 100%;
+    border: 2px solid rgb(132, 119, 221);
+    border-radius: 4px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+  }
   .App {
     display: flex;
     flex-direction: column;
@@ -71,15 +88,19 @@ body {
     align-items: center;
     width: 100%;
     flex-wrap: nowrap;
+    padding: 0 5%;
+  }
+  .App .column {
+    width: 100%;
   }
   .droppable-col {
     width: 100%;
     border: 2px solid rgb(147, 133, 233);
-    padding: 10px 10px 0 10px;
+    padding: 0;
     border-radius: 7px;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: 40px !important;
     box-shadow: inset 0 0 5px;
   }
 }
