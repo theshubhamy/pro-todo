@@ -6,6 +6,7 @@ import { v4 } from "uuid";
 
 function App() {
   const [text, setText] = useState("");
+  const [allIssue, setAllIssue] = useState([]);
   const [state, setState] = useState({
     todo: {
       title: "Todo",
@@ -51,9 +52,9 @@ function App() {
       return prev;
     });
   };
-  let issue = [];
-  localStorage.setItem("issue", issue);
-  const addItem = () => {
+
+  const addItem = async () => {
+    setAllIssue([...allIssue, text]);
     if (text === "") {
       alert("please enter any issue.");
     } else {
@@ -72,7 +73,29 @@ function App() {
           },
         };
       });
-
+      try {
+        const res = await fetch(
+          "https://pro-todo-firebase-default-rtdb.firebaseio.com/todo.json",
+          {
+            method: "POST",
+            headers: {
+              "content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              text,
+            }),
+          }
+        );
+        if (res.status === 200) {
+          alert("Issue added sucessfully😊");
+          localStorage.setItem("issue", allIssue);
+          console.log(allIssue);
+        } else {
+          alert("server error");
+        }
+      } catch (error) {
+        alert(error);
+      }
       setText("");
     }
   };
